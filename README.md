@@ -4,6 +4,8 @@
 
 Loan application triage for vehicle and equipment finance: a REST API, data quality checks, an explainable credit risk model, policy rules and broker feedback notes.
 
+**Live API:** https://metro-deal-desk-api.onrender.com/docs (free tier: the first request after a quiet spell takes about a minute while the server wakes up)
+
 All data in this project is synthetic, calibrated against public sources. Work in progress.
 
 ## Project structure
@@ -29,6 +31,7 @@ sql/
 tests/                          pytest suite (validation, policy, model behaviour, decisions, API)
 .github/workflows/ci.yml        Runs the tests on every push
 render.yaml                     Deployment config for Render
+docs/base44_build_guide.md      Prompts used to build the Base44 front end
 models/
   credit_model.txt              Trained model
   model_card.json               What it was trained on, test results, constraints

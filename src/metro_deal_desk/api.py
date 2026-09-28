@@ -121,7 +121,7 @@ def submit_application(app_in: ApplicationIn):
 
 @app.get("/applications", tags=["Applications"])
 def list_applications(decision_filter: Optional[Literal["Approve", "Refer", "Decline", "Returned"]] = Query(None, alias="decision"),
-                      limit: int = Query(50, ge=1, le=500), offset: int = Query(0, ge=0)):
+                      limit: int = Query(50, ge=1, le=5000), offset: int = Query(0, ge=0)):
     """Most recent applications first, optionally filtered by decision."""
     return db.list_applications(decision_filter, limit, offset)
 

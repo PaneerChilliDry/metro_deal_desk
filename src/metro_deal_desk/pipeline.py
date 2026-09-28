@@ -64,7 +64,7 @@ def score_queue(raw: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
             "policy_count": len(res["policy"]),
             "indicative_rate": res["indicative_rate"], "monthly_repayment": res["monthly_repayment"],
             "broker_note": res["broker_note"],
-            "reasons_json": json.dumps(res["reasons"]) if res["reasons"] else "",
+            "result_json": json.dumps(res),  # full result, used to seed the API database
         })
     return pd.DataFrame(rows), pd.DataFrame(log)
 

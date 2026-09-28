@@ -87,7 +87,6 @@ def init(path: Path | None = None, seed: bool = True) -> None:
 def _seed(con) -> None:
     q = pd.read_csv(SCORED / "scored_queue.csv", dtype={"abn": str})
     q["source"] = "seed"
-    q["result_json"] = q["reasons_json"].map(lambda r: json.dumps({"reasons": json.loads(r)}) if isinstance(r, str) and r else "")
     rows = q.reindex(columns=COLUMNS).astype(object).where(q.reindex(columns=COLUMNS).notna(), None)
     con.executemany(f"INSERT INTO applications ({', '.join(COLUMNS)}) VALUES ({', '.join('?' * len(COLUMNS))})",
                     rows.itertuples(index=False, name=None))
@@ -138,14 +137,15 @@ def get(application_id: str, path: Path | None = None) -> dict | None:
         return None
     d = dict(row)
     raw = d.pop("result_json") or ""
-    d["result"] = json.loads(raw) if raw else None  # full result for API submissions; reasons only for seeded rows
+    d["result"] = json.loads(raw) if raw else None
     return d
 
 
 def list_applications(decision: str | None = None, limit: int = 50, offset: int = 0,
                       path: Path | None = None) -> list[dict]:
-    sql = ("SELECT application_id, submitted_date, source, broker_id, industry, asset_description, loan_amount, "
-           "dq_status, decision, pd, risk_grade FROM applications")
+    sql = ("SELECT application_id, submitted_date, source, broker_id, channel, state, industry, asset_category, "
+           "asset_description, loan_amount, term_months, balloon_amount, dq_status, decision, pd, risk_grade "
+           "FROM applications")
     args: list = []
     if decision:
         sql += " WHERE decision = ?"

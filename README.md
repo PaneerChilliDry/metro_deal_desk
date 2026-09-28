@@ -10,16 +10,40 @@ All data in this project is synthetic, calibrated against public sources. Work i
 notebooks/
   01_sba_profiling.ipynb        Real-world risk effects from 273k US SBA loans
   02_synthetic_generator.ipynb  Generates and checks the synthetic applications
+  03_model_and_decisions.ipynb  Model training, calibration, explanations, validator test, triage
 src/metro_deal_desk/
   reference.py                  Asset catalogue, mixes, rates, sources and assumptions
   generator.py                  Synthetic applications, hidden default process, data quality injection
+  validation.py                 Data quality rules (reject or warn) and duplicate detection
+  features.py                   Feature engineering shared by training and live scoring
+  model.py                      LightGBM credit model with monotone constraints and SHAP reasons
+  policy.py                     Credit policy rules (refer or decline)
+  decision.py                   Combines everything into Approve / Refer / Decline / Returned plus a broker note
+  pipeline.py                   Scores the live queue and writes files for the dashboard
+models/
+  credit_model.txt              Trained model
+  model_card.json               What it was trained on, test results, constraints
 data/
   raw/                          Source data (not committed; see below)
   calibration/sba_effects.json  Effects exported from notebook 01
   synthetic/                    Generated datasets (see below)
+  scored/                       Scored live queue and rejection log
 ```
 
-To regenerate the synthetic data: `python -m metro_deal_desk.generator`
+Rebuild everything, in order:
+
+```
+python -m metro_deal_desk.generator   # synthetic data
+python -m metro_deal_desk.model       # train and save the model
+python -m metro_deal_desk.pipeline    # score the live queue
+```
+
+## How a decision is made
+
+1. **Data quality.** Rules check each submission (valid ABN, postcode matches state, balloon below loan, term offered, "new" assets are actually new, and so on). Serious problems return it to the broker unscored; minor ones are flagged. On the synthetic queue it caught all 140 injected problems with no false alarms on 1,864 clean submissions.
+2. **Risk model.** LightGBM estimates the probability of default. It is tested on the newest 20% of applications (AUC 0.728, well calibrated) and constrained so a better credit score or longer trading history can never raise risk. SHAP values give the top reasons for each score.
+3. **Credit policy.** Fixed rules (balloon limits, trading history, asset age at end of term, loan to value, credit score floor, automatic decision limit) can refer or decline whatever the score.
+4. **Decision and broker note.** Approve (PD under 5%), Refer (5 to 12%, or any policy referral) or Decline (12% or more, or a policy decline). The note is built only from the reasons found, with specific fixes such as the balloon amount that would bring a deal within policy.
 
 ## Setup
 

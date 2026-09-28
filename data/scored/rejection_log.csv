@@ -1,0 +1,141 @@
+application_id,submitted_date,broker_id,rule,severity,field,message
+APP-020008,2026-06-21,BRK-043,abn_checksum_fail,reject,abn,ABN 73280841955 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-020016,2026-06-21,BRK-004,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-020029,2026-06-22,BRK-036,postcode_state_mismatch,reject,postcode,Postcode 4609 is not in VIC. Please check the address.
+APP-020034,2026-06-22,BRK-023,postcode_state_mismatch,reject,postcode,Postcode 3528 is not in NSW. Please check the address.
+APP-020040,2026-06-23,BRK-048,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($72,900) is not less than the loan amount ($58,900)."
+APP-020044,2026-06-23,BRK-060,new_asset_too_old,reject,condition,Asset is marked New but the year is 2018. Should it be Used?
+APP-020049,2026-06-23,BRK-012,loan_far_above_asset_value,reject,loan_amount,"Loan ($16,000) is 182% of the asset price ($8,800). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020054,2026-06-24,BRK-011,abn_checksum_fail,reject,abn,ABN 27303652380 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-020065,2026-06-24,BRK-004,invalid_term,reject,term_months,Term of 100 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-020068,2026-06-24,BRK-041,unrecognised_asset,warn,asset_description,Asset 'Mazda C-5' is not in the asset catalogue. Did you mean 'Mazda CX-5'?
+APP-020108,2026-06-26,BRK-134,new_asset_too_old,reject,condition,Asset is marked New but the year is 2021. Should it be Used?
+APP-020124,2026-06-27,BRK-034,postcode_state_mismatch,reject,postcode,Postcode 3397 is not in NSW. Please check the address.
+APP-020132,2026-06-27,BRK-003,abn_checksum_fail,reject,abn,ABN 89727526663 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-020145,2026-06-28,BRK-005,abn_checksum_fail,reject,abn,ABN 96978110374 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-020149,2026-06-28,BRK-101,postcode_state_mismatch,reject,postcode,Postcode 3715 is not in TAS. Please check the address.
+APP-020161,2026-06-29,BRK-069,invalid_term,reject,term_months,Term of 100 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-020177,2026-06-30,BRK-026,postcode_state_mismatch,reject,postcode,Postcode 3967 is not in TAS. Please check the address.
+APP-020240,2026-07-03,BRK-080,new_asset_too_old,reject,condition,Asset is marked New but the year is 2021. Should it be Used?
+APP-020244,2026-07-03,BRK-028,new_asset_too_old,reject,condition,Asset is marked New but the year is 2016. Should it be Used?
+APP-020248,2026-07-03,BRK-037,loan_far_above_asset_value,reject,loan_amount,"Loan ($13,600) is 148% of the asset price ($9,200). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020250,2026-07-03,BRK-012,loan_far_above_asset_value,reject,loan_amount,"Loan ($114,700) is 184% of the asset price ($62,200). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020253,2026-07-03,BRK-012,postcode_state_mismatch,reject,postcode,Postcode 2048 is not in QLD. Please check the address.
+APP-020258,2026-07-04,BRK-018,new_asset_too_old,reject,condition,Asset is marked New but the year is 2022. Should it be Used?
+APP-020261,2026-07-04,BRK-134,unrecognised_asset,warn,asset_description,Asset 'Bobcat S650 skid stere' is not in the asset catalogue. Did you mean 'Bobcat S650 skid steer'?
+APP-020275,2026-07-04,BRK-003,unrecognised_asset,warn,asset_description,Asset 'Rooftop solar PV syste' is not in the asset catalogue. Did you mean 'Rooftop solar PV system'?
+APP-020277,2026-07-05,BRK-015,loan_far_above_asset_value,reject,loan_amount,"Loan ($141,500) is 170% of the asset price ($83,000). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020282,2026-07-05,BRK-001,new_asset_too_old,reject,condition,Asset is marked New but the year is 2017. Should it be Used?
+APP-020286,2026-07-05,BRK-002,unrecognised_asset,warn,asset_description,Asset 'Ford Range rXLT' is not in the asset catalogue. Did you mean 'Ford Ranger XLT'?
+APP-020313,2026-07-06,BRK-005,abn_checksum_fail,reject,abn,ABN 77211257805 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-020340,2026-07-07,BRK-063,loan_far_above_asset_value,reject,loan_amount,"Loan ($32,500) is 162% of the asset price ($20,000). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020342,2026-07-07,BRK-006,postcode_state_mismatch,reject,postcode,Postcode 4398 is not in VIC. Please check the address.
+APP-020378,2026-07-09,BRK-004,postcode_state_mismatch,reject,postcode,Postcode 5678 is not in WA. Please check the address.
+APP-020390,2026-07-10,BRK-052,invalid_term,reject,term_months,Term of 65 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-020391,2026-07-10,BRK-024,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-020392,2026-07-10,BRK-001,invalid_term,reject,term_months,Term of 6 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-020422,2026-07-11,BRK-039,postcode_state_mismatch,reject,postcode,Postcode 2132 is not in ACT. Please check the address.
+APP-020451,2026-07-13,BRK-072,unrecognised_asset,warn,asset_description,Asset 'Hin 300 Series' is not in the asset catalogue. Did you mean 'Hino 300 Series'?
+APP-020466,2026-07-13,BRK-011,loan_far_above_asset_value,reject,loan_amount,"Loan ($43,100) is 160% of the asset price ($27,000). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020469,2026-07-14,BRK-026,loan_far_above_asset_value,reject,loan_amount,"Loan ($87,500) is 142% of the asset price ($61,700). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020520,2026-07-15,BRK-004,loan_far_above_asset_value,reject,loan_amount,"Loan ($132,700) is 183% of the asset price ($72,400). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020534,2026-07-16,BRK-010,new_asset_too_old,reject,condition,Asset is marked New but the year is 2019. Should it be Used?
+APP-020586,2026-07-19,BRK-025,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($87,400) is not less than the loan amount ($75,000)."
+APP-020588,2026-07-19,BRK-007,invalid_term,reject,term_months,Term of 120 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-020601,2026-07-20,BRK-029,loan_far_above_asset_value,reject,loan_amount,"Loan ($91,600) is 170% of the asset price ($53,900). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020610,2026-07-20,BRK-121,invalid_term,reject,term_months,Term of 6 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-020612,2026-07-20,BRK-101,loan_far_above_asset_value,reject,loan_amount,"Loan ($96,500) is 167% of the asset price ($57,800). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020628,2026-07-21,BRK-075,postcode_state_mismatch,reject,postcode,Postcode 3297 is not in NSW. Please check the address.
+APP-020658,2026-07-22,BRK-026,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-020661,2026-07-22,BRK-052,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($58,400) is not less than the loan amount ($40,300)."
+APP-020664,2026-07-22,BRK-001,unrecognised_asset,warn,asset_description,Asset 'Tipper traier' is not in the asset catalogue. Did you mean 'Tipper trailer'?
+APP-020673,2026-07-23,BRK-003,abn_checksum_fail,reject,abn,ABN 38435679805 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-020675,2026-07-23,BRK-019,abn_checksum_fail,reject,abn,ABN 60055797895 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-020695,2026-07-24,BRK-128,invalid_term,reject,term_months,Term of 100 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-020752,2026-07-27,BRK-001,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-020830,2026-07-31,BRK-002,new_asset_too_old,reject,condition,Asset is marked New but the year is 2016. Should it be Used?
+APP-020837,2026-08-01,BRK-001,unrecognised_asset,warn,asset_description,Asset 'BYD tto 3' is not in the asset catalogue. Did you mean 'BYD Atto 3'?
+APP-020849,2026-08-01,BRK-098,postcode_state_mismatch,reject,postcode,Postcode 3365 is not in NSW. Please check the address.
+APP-020860,2026-08-02,BRK-005,unrecognised_asset,warn,asset_description,Asset 'Tesla Mode Y' is not in the asset catalogue. Did you mean 'Tesla Model Y'?
+APP-020870,2026-08-03,BRK-126,unrecognised_asset,warn,asset_description,Asset 'Toyota iAce' is not in the asset catalogue. Did you mean 'Toyota HiAce'?
+APP-020898,2026-08-04,BRK-134,abn_checksum_fail,reject,abn,ABN 41321046787 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-020902,2026-08-04,BRK-074,unrecognised_asset,warn,asset_description,Asset 'Bbcat S650 skid steer' is not in the asset catalogue. Did you mean 'Bobcat S650 skid steer'?
+APP-020908,2026-08-04,BRK-005,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-020914,2026-08-05,BRK-146,unrecognised_asset,warn,asset_description,Asset 'Csae IH Farmall tractor' is not in the asset catalogue. Did you mean 'Case IH Farmall tractor'?
+APP-020923,2026-08-05,BRK-035,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($62,200) is not less than the loan amount ($58,200)."
+APP-020927,2026-08-06,BRK-003,loan_far_above_asset_value,reject,loan_amount,"Loan ($103,300) is 195% of the asset price ($53,000). Check the amounts; more than 130% cannot be secured by the asset."
+APP-020931,2026-08-06,BRK-001,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($71,500) is not less than the loan amount ($49,500)."
+APP-020964,2026-08-07,BRK-121,new_asset_too_old,reject,condition,Asset is marked New but the year is 2019. Should it be Used?
+APP-020972,2026-08-08,BRK-002,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-020978,2026-08-08,BRK-062,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-020989,2026-08-09,BRK-018,unrecognised_asset,warn,asset_description,Asset 'Case IH Farmal tractor' is not in the asset catalogue. Did you mean 'Case IH Farmall tractor'?
+APP-021018,2026-08-10,BRK-029,new_asset_too_old,reject,condition,Asset is marked New but the year is 2016. Should it be Used?
+APP-021026,2026-08-11,BRK-001,abn_checksum_fail,reject,abn,ABN 69876058676 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-021044,2026-08-12,BRK-028,postcode_state_mismatch,reject,postcode,Postcode 2762 is not in QLD. Please check the address.
+APP-021056,2026-08-13,BRK-047,unrecognised_asset,warn,asset_description,Asset 'Flat top trailre' is not in the asset catalogue. Did you mean 'Flat top trailer'?
+APP-021092,2026-08-14,BRK-037,loan_far_above_asset_value,reject,loan_amount,"Loan ($61,700) is 196% of the asset price ($31,500). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021101,2026-08-15,BRK-104,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-021123,2026-08-15,BRK-001,loan_far_above_asset_value,reject,loan_amount,"Loan ($81,800) is 164% of the asset price ($49,800). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021132,2026-08-16,BRK-003,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-021160,2026-08-17,BRK-001,new_asset_too_old,reject,condition,Asset is marked New but the year is 2017. Should it be Used?
+APP-021170,2026-08-17,BRK-080,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($49,500) is not less than the loan amount ($33,300)."
+APP-021134-R,2026-08-17,BRK-013,duplicate_submission,reject,application_id,This looks like a resubmission of an application received in the last 7 days.
+APP-021187,2026-08-18,BRK-001,invalid_term,reject,term_months,Term of 6 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021195,2026-08-19,BRK-004,invalid_term,reject,term_months,Term of 6 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021221,2026-08-20,BRK-026,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-021251,2026-08-22,BRK-002,new_asset_too_old,reject,condition,Asset is marked New but the year is 2021. Should it be Used?
+APP-021270,2026-08-23,BRK-005,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($47,200) is not less than the loan amount ($36,500)."
+APP-021283,2026-08-24,BRK-006,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($10,800) is not less than the loan amount ($9,600)."
+APP-021303,2026-08-25,BRK-027,abn_checksum_fail,reject,abn,ABN 58182863046 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-021319,2026-08-25,BRK-013,invalid_term,reject,term_months,Term of 100 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021330,2026-08-26,BRK-048,invalid_term,reject,term_months,Term of 120 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021358,2026-08-27,BRK-001,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($56,700) is not less than the loan amount ($51,400)."
+APP-021362,2026-08-27,BRK-002,postcode_state_mismatch,reject,postcode,Postcode 6553 is not in SA. Please check the address.
+APP-021379,2026-08-28,BRK-002,invalid_term,reject,term_months,Term of 120 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021416,2026-08-30,BRK-039,invalid_term,reject,term_months,Term of 120 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021417,2026-08-30,BRK-094,abn_checksum_fail,reject,abn,ABN 44102337998 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-021457,2026-09-01,BRK-094,loan_far_above_asset_value,reject,loan_amount,"Loan ($82,000) is 168% of the asset price ($48,800). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021472,2026-09-02,BRK-049,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($51,900) is not less than the loan amount ($48,300)."
+APP-021480,2026-09-02,BRK-035,invalid_term,reject,term_months,Term of 65 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021485,2026-09-02,BRK-096,unrecognised_asset,warn,asset_description,Asset 'uso Canter' is not in the asset catalogue. Did you mean 'Fuso Canter'?
+APP-021491,2026-09-03,BRK-124,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-021496,2026-09-03,BRK-001,unrecognised_asset,warn,asset_description,Asset 'Espresso mahine' is not in the asset catalogue. Did you mean 'Espresso machine'?
+APP-021534,2026-09-05,BRK-043,unrecognised_asset,warn,asset_description,Asset 'Ford Transit Cstom' is not in the asset catalogue. Did you mean 'Ford Transit Custom'?
+APP-021538,2026-09-05,BRK-021,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-021551,2026-09-06,BRK-013,unrecognised_asset,warn,asset_description,Asset 'Mazda X-5' is not in the asset catalogue. Did you mean 'Mazda CX-5'?
+APP-021572,2026-09-07,BRK-070,postcode_state_mismatch,reject,postcode,Postcode 6500 is not in SA. Please check the address.
+APP-021594,2026-09-08,BRK-001,new_asset_too_old,reject,condition,Asset is marked New but the year is 2019. Should it be Used?
+APP-021609,2026-09-09,BRK-005,unrecognised_asset,warn,asset_description,Asset 'For Ranger XLT' is not in the asset catalogue. Did you mean 'Ford Ranger XLT'?
+APP-021617,2026-09-09,BRK-129,loan_far_above_asset_value,reject,loan_amount,"Loan ($89,700) is 168% of the asset price ($53,500). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021658,2026-09-11,BRK-011,abn_checksum_fail,reject,abn,ABN 93244133347 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-021634-R,2026-09-11,BRK-060,duplicate_submission,reject,application_id,This looks like a resubmission of an application received in the last 7 days.
+APP-021664,2026-09-12,BRK-003,postcode_state_mismatch,reject,postcode,Postcode 6414 is not in SA. Please check the address.
+APP-021667,2026-09-12,BRK-043,abn_checksum_fail,reject,abn,ABN 30076402066 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-021684,2026-09-13,BRK-021,invalid_term,reject,term_months,Term of 65 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021700,2026-09-13,BRK-008,invalid_term,reject,term_months,Term of 6 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021665-R,2026-09-13,BRK-004,duplicate_submission,reject,application_id,This looks like a resubmission of an application received in the last 7 days.
+APP-021728,2026-09-14,BRK-020,new_asset_too_old,reject,condition,Asset is marked New but the year is 2022. Should it be Used?
+APP-021732,2026-09-15,BRK-017,new_asset_too_old,reject,condition,Asset is marked New but the year is 2015. Should it be Used?
+APP-021738,2026-09-15,BRK-001,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($73,000) is not less than the loan amount ($57,500)."
+APP-021743,2026-09-16,BRK-007,missing_abn,reject,abn,ABN is missing. An ABN is required for commercial finance.
+APP-021747,2026-09-16,BRK-040,abn_checksum_fail,reject,abn,ABN 40199487097 is not a valid ABN (fails the ATO checksum). Please check for a typo.
+APP-021767,2026-09-17,BRK-033,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($18,900) is not less than the loan amount ($14,000)."
+APP-021775,2026-09-17,BRK-097,loan_far_above_asset_value,reject,loan_amount,"Loan ($61,400) is 157% of the asset price ($39,000). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021781,2026-09-17,BRK-137,loan_far_above_asset_value,reject,loan_amount,"Loan ($58,400) is 143% of the asset price ($40,900). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021786,2026-09-18,BRK-112,loan_far_above_asset_value,reject,loan_amount,"Loan ($342,300) is 171% of the asset price ($199,700). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021790,2026-09-18,BRK-059,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($51,700) is not less than the loan amount ($35,400)."
+APP-021841,2026-09-20,BRK-022,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($58,000) is not less than the loan amount ($41,600)."
+APP-021843,2026-09-20,BRK-030,unrecognised_asset,warn,asset_description,Asset 'Ford Ragner XLT' is not in the asset catalogue. Did you mean 'Ford Ranger XLT'?
+APP-021857,2026-09-21,BRK-028,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($87,000) is not less than the loan amount ($69,800)."
+APP-021866,2026-09-21,BRK-002,loan_far_above_asset_value,reject,loan_amount,"Loan ($53,000) is 147% of the asset price ($36,000). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021868,2026-09-21,BRK-004,postcode_state_mismatch,reject,postcode,Postcode 2890 is not in QLD. Please check the address.
+APP-021875,2026-09-22,BRK-002,balloon_exceeds_loan,reject,balloon_amount,"Balloon ($114,800) is not less than the loan amount ($94,600)."
+APP-021877,2026-09-22,BRK-019,invalid_term,reject,term_months,Term of 65 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021879,2026-09-22,BRK-113,loan_far_above_asset_value,reject,loan_amount,"Loan ($70,300) is 176% of the asset price ($40,000). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021932,2026-09-24,BRK-004,loan_far_above_asset_value,reject,loan_amount,"Loan ($22,700) is 176% of the asset price ($12,900). Check the amounts; more than 130% cannot be secured by the asset."
+APP-021954,2026-09-26,BRK-105,invalid_term,reject,term_months,Term of 120 months is not offered. Terms run from 12 to 84 months in 12-month steps.
+APP-021962,2026-09-26,BRK-050,unrecognised_asset,warn,asset_description,Asset 'Ford Ranegr XLT' is not in the asset catalogue. Did you mean 'Ford Ranger XLT'?
+APP-021978,2026-09-27,BRK-026,unrecognised_asset,warn,asset_description,Asset 'MG ZS V' is not in the asset catalogue. Did you mean 'MG ZS EV'?
+APP-021992,2026-09-27,BRK-001,postcode_state_mismatch,reject,postcode,Postcode 2112 is not in QLD. Please check the address.
+APP-021993,2026-09-27,BRK-028,unrecognised_asset,warn,asset_description,Asset 'Tipper traile' is not in the asset catalogue. Did you mean 'Tipper trailer'?
+APP-022000-R,2026-09-28,BRK-032,duplicate_submission,reject,application_id,This looks like a resubmission of an application received in the last 7 days.

@@ -1,0 +1,40 @@
+{
+  "model": "LightGBM gradient boosted trees",
+  "trained_on": "13,600 synthetic applications (2023-10-01 to 2025-07-31)",
+  "validated_on": "2,400 applications for early stopping (2025-07-31 to 2025-11-29)",
+  "tested_on": "4,000 newer applications (2025-11-29 to 2026-06-21)",
+  "test_auc": 0.728,
+  "test_brier": 0.046,
+  "test_default_rate": 0.0505,
+  "mean_predicted_pd": 0.0487,
+  "best_iteration": 109,
+  "features": [
+    "credit_score",
+    "abn_age_months",
+    "loan_amount",
+    "term_months",
+    "balloon_pct",
+    "balloon_gap",
+    "asset_age_years",
+    "asset_age_at_end",
+    "lvr",
+    "industry",
+    "asset_category",
+    "condition"
+  ],
+  "monotone_constraints": {
+    "credit_score": -1,
+    "abn_age_months": -1,
+    "balloon_gap": 1,
+    "asset_age_at_end": 1,
+    "lvr": 1
+  },
+  "risk_grades": {
+    "A": 0.02,
+    "B": 0.04,
+    "C": 0.07,
+    "D": 0.12,
+    "E": 1.01
+  },
+  "data": "Synthetic. Not trained on any real lender's data."
+}

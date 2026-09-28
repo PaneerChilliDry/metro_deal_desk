@@ -1,0 +1,12 @@
+# Render blueprint: deploys the API as a free web service.
+services:
+  - type: web
+    name: metro-deal-desk-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn metro_deal_desk.api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"

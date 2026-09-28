@@ -45,7 +45,7 @@ def score_queue(raw: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
         down = (res["reasons"] or {}).get("lowers_risk", [])
         rows.append({
             "application_id": app["application_id"], "submitted_date": app["submitted_date"],
-            "broker_id": app["broker_id"], "channel": app["channel"], "state": app["state"],
+            "broker_id": app["broker_id"], "abn": app["abn"], "channel": app["channel"], "state": app["state"],
             "industry": app["industry"], "asset_category": app["asset_category"],
             "asset_description": app["asset_description"], "condition": app["condition"],
             "fuel_type": app["fuel_type"], "asset_price": app["asset_price"], "loan_amount": app["loan_amount"],

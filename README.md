@@ -1,5 +1,7 @@
 # Metro Deal Desk
 
+[![Tests](https://github.com/PaneerChilliDry/metro_deal_desk/actions/workflows/ci.yml/badge.svg)](https://github.com/PaneerChilliDry/metro_deal_desk/actions/workflows/ci.yml)
+
 Loan application triage for vehicle and equipment finance: a REST API, data quality checks, an explainable credit risk model, policy rules and broker feedback notes.
 
 All data in this project is synthetic, calibrated against public sources. Work in progress.
@@ -20,6 +22,13 @@ src/metro_deal_desk/
   policy.py                     Credit policy rules (refer or decline)
   decision.py                   Combines everything into Approve / Refer / Decline / Returned plus a broker note
   pipeline.py                   Scores the live queue and writes files for the dashboard
+  db.py                         SQLite store for applications, decisions and data quality issues
+  api.py                        FastAPI service
+sql/
+  portfolio.sql                 Portfolio analytics queries (decision mix, broker scorecard, and more)
+tests/                          pytest suite (validation, policy, model behaviour, decisions, API)
+.github/workflows/ci.yml        Runs the tests on every push
+render.yaml                     Deployment config for Render
 models/
   credit_model.txt              Trained model
   model_card.json               What it was trained on, test results, constraints
@@ -45,13 +54,35 @@ python -m metro_deal_desk.pipeline    # score the live queue
 3. **Credit policy.** Fixed rules (balloon limits, trading history, asset age at end of term, loan to value, credit score floor, automatic decision limit) can refer or decline whatever the score.
 4. **Decision and broker note.** Approve (PD under 5%), Refer (5 to 12%, or any policy referral) or Decline (12% or more, or a policy decline). The note is built only from the reasons found, with specific fixes such as the balloon amount that would bring a deal within policy.
 
+## API
+
+Interactive docs at `/docs` once running. Main endpoints:
+
+| Method | Path | What it does |
+|---|---|---|
+| POST | `/applications` | Submit an application; returns decision, risk score, reasons, policy flags and broker note |
+| GET | `/applications` | Recent applications, filter with `?decision=Refer` |
+| GET | `/applications/{id}` | One application with its full result |
+| POST | `/quote` | Monthly repayment for a loan with a balloon |
+| GET | `/portfolio/summary` | Decision mix, risk by industry, broker scorecard, data quality by rule, weekly volume |
+| GET | `/policy`, `/model`, `/reference/options` | Policy rules, model card, allowed values for forms |
+| GET | `/health` | Service check |
+
+Business-rule problems (bad ABN, postcode in the wrong state) return 200 with a `Returned` decision and clear messages, so a broker portal can show them. Wrong types (text where a number belongs) return 422. Resubmitting the same deal within 7 days is caught as a duplicate.
+
+The database is SQLite, seeded with the scored synthetic queue on start-up. On Render's free tier the disk is temporary, so API submissions reset when the service restarts.
+
 ## Setup
 
 ```
 python -m venv .venv
 .venv\Scripts\activate        (Windows)   or   source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
+pytest                                          # 50 tests
+uvicorn metro_deal_desk.api:app --reload        # then open http://127.0.0.1:8000/docs
 ```
+
+`requirements.txt` holds only what the API needs (used for deployment); `requirements-dev.txt` adds testing and notebook tools.
 
 The SBA dataset (`SBAnational.csv`, 179 MB) is not in the repo. Download it from Kaggle ("Should This Loan be Approved or Denied?") and place it in `data/raw/`.
 

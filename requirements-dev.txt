@@ -1,0 +1,9 @@
+# Everything for development: tests, notebooks, analysis
+-r requirements.txt
+pytest>=8.0
+httpx>=0.27
+matplotlib>=3.8
+statsmodels>=0.14
+ipykernel>=6.29
+notebook>=7.0
+nbformat>=5.9

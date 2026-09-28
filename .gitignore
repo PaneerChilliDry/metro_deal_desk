@@ -15,3 +15,7 @@ Thumbs.db
 
 # Secrets
 .env
+
+# Local database (rebuilt and seeded automatically on start-up)
+data/*.db
+.pytest_cache/

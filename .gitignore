@@ -1,0 +1,17 @@
+# Raw data is too large for GitHub (179 MB); see README for where to get it
+data/raw/
+*.zip
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Editors and OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env

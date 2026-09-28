@@ -1,0 +1,111 @@
+{
+  "source": "US SBA National dataset (Li, Mickel and Taylor 2018), CC BY 4.0",
+  "sample": {
+    "loans": 273379,
+    "window": "disbursed 2000-2010",
+    "filters": [
+      "Outcome known",
+      "Disbursed 2000-2010",
+      "Term 1-239 months",
+      "Industry recorded",
+      "Not a revolving line",
+      "Business age recorded",
+      "Amount > 0"
+    ],
+    "sba_default_rate": 0.2709
+  },
+  "use": "Relative effects only. Base rates come from Australian sources.",
+  "industry": {
+    "Admin & support services": {
+      "odds_ratio": 0.952,
+      "sba_default_rate": 0.2665,
+      "sba_loans": 14125
+    },
+    "Agriculture": {
+      "odds_ratio": 0.605,
+      "sba_default_rate": 0.1519,
+      "sba_loans": 3212
+    },
+    "Construction & trades": {
+      "odds_ratio": 1.081,
+      "sba_default_rate": 0.3018,
+      "sba_loans": 20544
+    },
+    "Health care": {
+      "odds_ratio": 0.638,
+      "sba_default_rate": 0.1588,
+      "sba_loans": 19272
+    },
+    "Hospitality": {
+      "odds_ratio": 1.406,
+      "sba_default_rate": 0.2743,
+      "sba_loans": 38337
+    },
+    "Manufacturing": {
+      "odds_ratio": 0.888,
+      "sba_default_rate": 0.2151,
+      "sba_loans": 24900
+    },
+    "Mining": {
+      "odds_ratio": 0.296,
+      "sba_default_rate": 0.1014,
+      "sba_loans": 759
+    },
+    "Other": {
+      "odds_ratio": 1.298,
+      "sba_default_rate": 0.3107,
+      "sba_loans": 23152
+    },
+    "Other services": {
+      "odds_ratio": 1.168,
+      "sba_default_rate": 0.2695,
+      "sba_loans": 29120
+    },
+    "Professional services": {
+      "odds_ratio": 1.0,
+      "sba_default_rate": 0.2746,
+      "sba_loans": 21656
+    },
+    "Retail trade": {
+      "odds_ratio": 1.496,
+      "sba_default_rate": 0.3123,
+      "sba_loans": 52278
+    },
+    "Transport & logistics": {
+      "odds_ratio": 0.761,
+      "sba_default_rate": 0.2697,
+      "sba_loans": 11652
+    },
+    "Wholesale trade": {
+      "odds_ratio": 1.16,
+      "sba_default_rate": 0.289,
+      "sba_loans": 14372
+    }
+  },
+  "new_business_odds_ratio": 1.081,
+  "loan_size_odds_ratio_usd": {
+    "<25k": 1.0,
+    "25-50k": 0.625,
+    "50-100k": 0.558,
+    "100-250k": 0.668,
+    "250k+": 0.864
+  },
+  "cycle_stress_odds_ratio_by_vintage": {
+    "2000": 1.0,
+    "2001": 1.091,
+    "2002": 1.045,
+    "2003": 1.246,
+    "2004": 1.475,
+    "2005": 2.147,
+    "2006": 3.237,
+    "2007": 5.347,
+    "2008": 3.777,
+    "2009": 1.78,
+    "2010": 0.903
+  },
+  "not_carried": {
+    "term": "SBA short-term loans are a different product; generator uses asset-finance logic instead",
+    "base_rate": "SBA level far above Australian secured asset finance",
+    "lowdoc_urban": "coding artefacts and programme differences"
+  }
+}

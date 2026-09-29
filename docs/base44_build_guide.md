@@ -13,7 +13,7 @@ Before starting a session, open https://metro-deal-desk-api.onrender.com/health 
 ## Prompt 1: app shell and the broker portal
 
 ```
-Build a web app called "Deal Desk" for triaging vehicle and equipment finance applications. It is a portfolio demo that runs on synthetic data. It must not use any real company's logo, brand colours or name in the header. Style: clean internal-tool look, white background, one dark navy accent colour, a left sidebar, plenty of whitespace, no emojis.
+Build a web app called "Deal Desk" for triaging vehicle and equipment finance applications. It is a portfolio demo that runs on synthetic data. It must not use any company's logo. Style: clean internal-tool look, white background, one dark navy accent colour, a left sidebar, plenty of whitespace, no emojis.
 
 Sidebar pages (build the first now, placeholders for the rest): Broker Portal, Credit Dashboard, Application Detail (reached by clicking an application, not in the sidebar), Data Quality, About.
 
@@ -149,6 +149,30 @@ Title: "About this project"
 - "How a decision is made" as four numbered steps: 1. Data quality rules check the submission. 2. A LightGBM model estimates the probability of default and explains its top reasons (SHAP). 3. Credit policy rules can refer or decline whatever the score. 4. The system writes a note for the broker; AI may reword it for tone but never changes its content.
 - Links: "API documentation" -> https://metro-deal-desk-api.onrender.com/docs, "Source code" -> https://github.com/PaneerChilliDry/metro_deal_desk
 - "Built by Parva Teli-Shah."
+```
+
+---
+
+## Visual pass (after Prompt 4)
+
+Run once every page exists, so one prompt styles the whole app. Colours come from Metro's public brand palette. Attach the white logo file (kept outside the repo, in the project folder's `brand/` folder) in the same message. Metro's site uses Euclid Circular, a licensed font that Base44 cannot load, so Outfit (a free Google Font with a similar geometric, rounded feel) stands in.
+
+```
+Visual refresh across the whole app. Keep all functionality, data and page structure exactly as they are.
+
+Logo: use the attached white logo image at the top of the sidebar, about 28px tall. Directly beside it, show a small pill-shaped label reading "Concept" (white text, 1px white outline). Under the logo, show the line "A concept project for a Metro Finance application" in small, light text. Do not use the logo anywhere else.
+
+Font: use "Outfit" from Google Fonts for all text. Headings semi-bold, body regular.
+
+Colours:
+- Primary: #5164FF (buttons, links, active sidebar item, main chart colour)
+- Dark navy: #3A3F76 (sidebar background, headings)
+- Coral #FF563C and warm yellow #FFC976, used sparingly as accents (for example a thin top border on KPI cards)
+- White page background; white cards with soft shadows and 12px rounded corners.
+Keep the decision badge colours (Approve green, Refer amber, Decline red, Returned grey) so decisions never clash with the theme.
+
+Footer on every page, small grey text, centred:
+"Independent portfolio project by Parva Teli-Shah, created for an application to the Metro Finance AI & Software Engineering Graduate Program. Not affiliated with, endorsed by or produced by Metro Finance. All data is synthetic; no real customer, broker or lender data is used."
 ```
 
 ---

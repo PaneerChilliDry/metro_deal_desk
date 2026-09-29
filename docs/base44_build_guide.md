@@ -153,6 +153,43 @@ Title: "About this project"
 
 ---
 
+## Prompt 5: Risk Lab (stress test and monitoring)
+
+Needs the API update with `/stress` and `/monitoring/drift` to be live (push first, wait for Render to redeploy).
+
+```
+Add a new page called "Risk Lab" to the "Metro staff view" section of the sidebar, below Data Quality. Match the existing theme exactly. It has two parts.
+
+PART 1: "What if the economy turns?"
+- GET /stress/scenarios returns a list of 5 scenarios: [{key, label, odds_multiplier, based_on_vintages}]. Keys in order: benign, baseline, mild, severe, gfc.
+- Show them as a row of 5 selectable pill buttons using the labels, with "GFC (like 2007)" selected by default. Under the pills, small grey text: "Each scenario is based on how real US small business loans from that year performed, relative to the 2000 to 2010 average."
+- When a scenario is selected, GET /stress?scenario={key}. The response contains:
+  label, loans, exposure,
+  baseline: {avg_pd_pct, expected_defaults, expected_loss, expected_loss_pct},
+  stressed: {avg_pd_pct, expected_defaults, expected_loss, expected_loss_pct},
+  would_no_longer_auto_approve_pct,
+  by_industry: [{industry, loans, exposure, avg_pd_base_pct, avg_pd_stressed_pct, expected_loss_base, expected_loss_stressed, loss_multiple}]
+- Show four KPI cards, each with the baseline value in small grey text underneath ("Today: ..."):
+  1. Expected loss ($, stressed.expected_loss)
+  2. Expected loss as % of book (stressed.expected_loss_pct)
+  3. Average probability of default (stressed.avg_pd_pct, %)
+  4. Approved deals that would need review (would_no_longer_auto_approve_pct, %)
+- Chart "Expected loss by industry": horizontal grouped bars per industry, two bars each: "Today" (light grey) and the selected scenario (primary colour #5164FF), from expected_loss_base and expected_loss_stressed, sorted by stressed value. Legend above the chart.
+- Small table under the chart: Industry, Loans, Avg PD today %, Avg PD in scenario %, Loss multiple (e.g. "3.3x").
+- Caption: "Expected loss = probability of default x loss given default x loan amount. In a downturn more loans default and repossessed assets sell for less. Industry sensitivity is measured from real crisis-era loan data."
+
+PART 2: "Is the model still seeing familiar applications?"
+- GET /monitoring/drift returns: overall_status ("Stable", "Watch" or "Shift"), features: [{label, psi, status}], simulated, simulation_note.
+- Show a status banner: Stable (green), Watch (amber), Shift (red), always with the word, e.g. "Model inputs: Stable".
+- Table: Feature (label), PSI (3 decimals), Status (coloured pill with the word).
+- Under the table, a row of buttons labelled "Simulate:" with options "None", "Construction boom", "Bigger loans", "Riskier applicants", mapping to simulate = none, construction_boom, bigger_loans, riskier_mix. Selecting one calls GET /monitoring/drift?simulate={value} (no parameter for None). When a simulation is active, show a clearly visible note above the table: "Simulated scenario: {simulation_note}. Live data is unchanged."
+- Caption: "Population Stability Index compares today's applications with the data the model was trained on. Under 0.10 is stable, 0.10 to 0.25 is worth watching, above 0.25 means the model should be reviewed."
+```
+
+**Check:** switching from Baseline to GFC should raise expected loss from about 1.1% to about 3.4% of the book, with roughly 72% of approved deals needing review. Monitoring should be Stable, and each simulation should turn at least one row amber or red.
+
+---
+
 ## Visual pass (after Prompt 4)
 
 Run once every page exists, so one prompt styles the whole app. Colours come from Metro's public brand palette. Attach the white logo file (kept outside the repo, in the project folder's `brand/` folder) in the same message. Metro's site uses Euclid Circular, a licensed font that Base44 cannot load, so Outfit (a free Google Font with a similar geometric, rounded feel) stands in.

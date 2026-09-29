@@ -1,0 +1,108 @@
+{
+  "source": "US SBA National dataset (Li, Mickel and Taylor 2018), CC BY 4.0",
+  "method": "Scenario odds multipliers compare an SBA vintage's odds of default with the loan-weighted 2000-2010 average, controlling for industry, size and business age (notebook 01). Industry sensitivity compares crisis vintages (2006-2008) with calm ones (2000-2003), relative to all industries, shrunk toward 1 with a credibility weight of n / (n + 2000).",
+  "scenarios": {
+    "benign": {
+      "label": "Benign (like 2000-2002)",
+      "odds_multiplier": 0.547,
+      "based_on_vintages": [
+        2000,
+        2001,
+        2002
+      ]
+    },
+    "baseline": {
+      "label": "Baseline (through the cycle)",
+      "odds_multiplier": 1.0,
+      "based_on_vintages": "2000-2010 average"
+    },
+    "mild": {
+      "label": "Mild downturn (like 2005)",
+      "odds_multiplier": 1.124,
+      "based_on_vintages": [
+        2005
+      ]
+    },
+    "severe": {
+      "label": "Severe downturn (like 2006)",
+      "odds_multiplier": 1.694,
+      "based_on_vintages": [
+        2006
+      ]
+    },
+    "gfc": {
+      "label": "GFC (like 2007)",
+      "odds_multiplier": 2.799,
+      "based_on_vintages": [
+        2007
+      ]
+    }
+  },
+  "industry_sensitivity": {
+    "Admin & support services": {
+      "sensitivity": 1.086,
+      "crisis_vs_calm_odds_ratio": 4.26,
+      "sba_loans": 8916
+    },
+    "Agriculture": {
+      "sensitivity": 0.54,
+      "crisis_vs_calm_odds_ratio": 1.09,
+      "sba_loans": 1953
+    },
+    "Construction & trades": {
+      "sensitivity": 1.081,
+      "crisis_vs_calm_odds_ratio": 4.19,
+      "sba_loans": 12638
+    },
+    "Health care": {
+      "sensitivity": 0.919,
+      "crisis_vs_calm_odds_ratio": 3.28,
+      "sba_loans": 12361
+    },
+    "Hospitality": {
+      "sensitivity": 0.956,
+      "crisis_vs_calm_odds_ratio": 3.48,
+      "sba_loans": 25010
+    },
+    "Manufacturing": {
+      "sensitivity": 0.841,
+      "crisis_vs_calm_odds_ratio": 2.93,
+      "sba_loans": 16290
+    },
+    "Mining": {
+      "sensitivity": 0.892,
+      "crisis_vs_calm_odds_ratio": 1.83,
+      "sba_loans": 504
+    },
+    "Other": {
+      "sensitivity": 1.11,
+      "crisis_vs_calm_odds_ratio": 4.37,
+      "sba_loans": 14689
+    },
+    "Other services": {
+      "sensitivity": 0.986,
+      "crisis_vs_calm_odds_ratio": 3.63,
+      "sba_loans": 19143
+    },
+    "Professional services": {
+      "sensitivity": 1.131,
+      "crisis_vs_calm_odds_ratio": 4.51,
+      "sba_loans": 13810
+    },
+    "Retail trade": {
+      "sensitivity": 0.998,
+      "crisis_vs_calm_odds_ratio": 3.7,
+      "sba_loans": 34188
+    },
+    "Transport & logistics": {
+      "sensitivity": 0.972,
+      "crisis_vs_calm_odds_ratio": 3.54,
+      "sba_loans": 7285
+    },
+    "Wholesale trade": {
+      "sensitivity": 1.064,
+      "crisis_vs_calm_odds_ratio": 4.11,
+      "sba_loans": 9335
+    }
+  }
+}

@@ -17,7 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, Field
 
-from . import db, decision, model, policy
+from . import db, decision, model, monitoring, policy, stress
 from . import reference as ref
 from .generator import monthly_repayment
 
@@ -149,6 +149,32 @@ def quote(q: QuoteIn):
 def portfolio_summary():
     """Decision mix, risk by industry, broker scorecard, data quality by rule and weekly volume (SQL in sql/portfolio.sql)."""
     return db.portfolio_summary()
+
+
+@app.get("/stress/scenarios", tags=["Risk"])
+def stress_scenarios():
+    """Downturn scenarios, each tied to a real SBA loan vintage."""
+    return stress.scenarios()
+
+
+@app.get("/stress", tags=["Risk"])
+def stress_test(scenario: Literal["benign", "baseline", "mild", "severe", "gfc"] = "gfc",
+                multiplier: Optional[float] = Query(None, gt=0, le=10, description="Custom odds multiplier; overrides scenario"),
+                book: Literal["approved", "all_scored"] = "approved"):
+    """Expected losses and decision changes for the book under a downturn scenario."""
+    decisions = ("Approve",) if book == "approved" else ("Approve", "Refer", "Decline")
+    return {"book": book, **stress.run(db.book(decisions), scenario=scenario, multiplier=multiplier)}
+
+
+@app.get("/monitoring/drift", tags=["Risk"])
+def drift(simulate: Optional[Literal["construction_boom", "bigger_loans", "riskier_mix"]] = None):
+    """Population Stability Index for incoming applications vs the training data.
+    Use `simulate` to see how the monitor reacts to a hypothetical shift."""
+    current = db.book(("Approve", "Refer", "Decline", "Returned"))
+    if simulate:
+        current = monitoring.simulate(current, simulate)
+    report = monitoring.drift_report(current)
+    return {"simulated": simulate, "simulation_note": monitoring.SIMULATIONS.get(simulate), **report}
 
 
 @app.get("/policy", tags=["Reference"])

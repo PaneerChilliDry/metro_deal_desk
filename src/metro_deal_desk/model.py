@@ -73,6 +73,10 @@ def train(history: pd.DataFrame, save: bool = True):
         MODEL_DIR.mkdir(exist_ok=True)
         booster.save_model(str(MODEL_PATH), num_iteration=booster.best_iteration)
         CARD_PATH.write_text(json.dumps(card, indent=2))
+        # Training-time snapshot used by monitoring.py to spot drift later.
+        from . import monitoring
+        monitoring.save_reference(monitoring.build_reference(train_df, booster.predict(
+            build_features(train_df), num_iteration=booster.best_iteration)))
     return booster, card, (train_df, test_df, p_test)
 
 

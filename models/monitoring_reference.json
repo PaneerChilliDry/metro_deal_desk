@@ -1,0 +1,100 @@
+{
+  "created_from": "16,000 training applications",
+  "numeric": {
+    "loan_amount": {
+      "edges": [
+        null,
+        16100.0,
+        23900.0,
+        33200.0,
+        41500.0,
+        48800.0,
+        57100.0,
+        66500.0,
+        80420.00000000007,
+        134800.0,
+        null
+      ],
+      "expected": [
+        0.098875,
+        0.100438,
+        0.100438,
+        0.098812,
+        0.101125,
+        0.100125,
+        0.099812,
+        0.100375,
+        0.099938,
+        0.100062
+      ]
+    },
+    "term_months": {
+      "edges": [
+        null,
+        36.0,
+        48.0,
+        60.0,
+        null
+      ],
+      "expected": [
+        0.059688,
+        0.256188,
+        0.292438,
+        0.391688
+      ]
+    },
+    "pd": {
+      "edges": [
+        null,
+        0.015530374441784385,
+        0.019284814606040347,
+        0.023554668659594682,
+        0.02863854777995452,
+        0.03533775636799012,
+        0.04393369613428411,
+        0.054845165117206954,
+        0.07053119099427765,
+        0.09892460170393494,
+        null
+      ],
+      "expected": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ]
+    }
+  },
+  "categorical": {
+    "industry": {
+      "Construction & trades": 0.214438,
+      "Transport & logistics": 0.157688,
+      "Professional services": 0.102938,
+      "Agriculture": 0.079938,
+      "Manufacturing": 0.0745,
+      "Retail trade": 0.06575,
+      "Other services": 0.063312,
+      "Hospitality": 0.058812,
+      "Admin & support services": 0.052125,
+      "Health care": 0.051875,
+      "Wholesale trade": 0.050438,
+      "Other": 0.018375,
+      "Mining": 0.009812
+    },
+    "asset_category": {
+      "Ute / van": 0.321438,
+      "Car / SUV": 0.215688,
+      "Other equipment": 0.171312,
+      "Truck": 0.150062,
+      "Trailer": 0.062312,
+      "Earthmoving equipment": 0.043438,
+      "Agricultural machinery": 0.03575
+    }
+  }
+}

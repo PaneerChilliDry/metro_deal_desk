@@ -15,6 +15,7 @@ notebooks/
   01_sba_profiling.ipynb        Real-world risk effects from 273k US SBA loans
   02_synthetic_generator.ipynb  Generates and checks the synthetic applications
   03_model_and_decisions.ipynb  Model training, calibration, explanations, validator test, triage
+  04_stress_and_monitoring.ipynb  Downturn stress test and drift monitoring
 src/metro_deal_desk/
   reference.py                  Asset catalogue, mixes, rates, sources and assumptions
   generator.py                  Synthetic applications, hidden default process, data quality injection
@@ -24,6 +25,9 @@ src/metro_deal_desk/
   policy.py                     Credit policy rules (refer or decline)
   decision.py                   Combines everything into Approve / Refer / Decline / Returned plus a broker note
   pipeline.py                   Scores the live queue and writes files for the dashboard
+  cycle_calibration.py          Measures downturn severity and industry sensitivity from SBA vintages
+  stress.py                     Portfolio stress test: stressed PD, downturn LGD, expected loss
+  monitoring.py                 Population Stability Index drift checks against the training data
   db.py                         SQLite store for applications, decisions and data quality issues
   api.py                        FastAPI service
 sql/
@@ -35,9 +39,11 @@ docs/base44_build_guide.md      Prompts used to build the Base44 front end
 models/
   credit_model.txt              Trained model
   model_card.json               What it was trained on, test results, constraints
+  monitoring_reference.json     Training-time distributions used for drift checks
 data/
   raw/                          Source data (not committed; see below)
   calibration/sba_effects.json  Effects exported from notebook 01
+  calibration/cycle_sensitivity.json  Downturn scenarios and industry sensitivity
   synthetic/                    Generated datasets (see below)
   scored/                       Scored live queue and rejection log
 ```
@@ -57,6 +63,13 @@ python -m metro_deal_desk.pipeline    # score the live queue
 3. **Credit policy.** Fixed rules (balloon limits, trading history, asset age at end of term, loan to value, credit score floor, automatic decision limit) can refer or decline whatever the score.
 4. **Decision and broker note.** Approve (PD under 5%), Refer (5 to 12%, or any policy referral) or Decline (12% or more, or a policy decline). The note is built only from the reasons found, with specific fixes such as the balloon amount that would bring a deal within policy.
 
+## Stress testing and monitoring
+
+Two checks a risk team runs once a model is live (notebook 04, API endpoints `/stress` and `/monitoring/drift`):
+
+- **Stress test.** Five scenarios, each tied to a real SBA loan vintage (benign 2000 to 2002, baseline, mild 2005, severe 2006, GFC 2007). Industry sensitivity to downturns is measured from crisis-era versus calm-era loans, with small industries shrunk toward average. Under the GFC scenario, expected loss on the approved book rises from about 1.1% to 3.4%, and about 72% of today's automatic approvals would need review.
+- **Drift monitoring.** Population Stability Index for loan size, term, industry mix, asset mix and model score, compared with the training data. The live queue is stable; three built-in simulations (construction boom, bigger loans, riskier applicants) show the monitor flags each shift on the right feature.
+
 ## API
 
 Interactive docs at `/docs` once running. Main endpoints:
@@ -67,6 +80,8 @@ Interactive docs at `/docs` once running. Main endpoints:
 | GET | `/applications` | Recent applications, filter with `?decision=Refer` |
 | GET | `/applications/{id}` | One application with its full result |
 | POST | `/quote` | Monthly repayment for a loan with a balloon |
+| GET | `/stress`, `/stress/scenarios` | Expected loss and decision changes under a downturn scenario |
+| GET | `/monitoring/drift` | Population Stability Index vs training data, with optional simulated shifts |
 | GET | `/portfolio/summary` | Decision mix, risk by industry, broker scorecard, data quality by rule, weekly volume |
 | GET | `/policy`, `/model`, `/reference/options` | Policy rules, model card, allowed values for forms |
 | GET | `/health` | Service check |
@@ -81,7 +96,7 @@ The database is SQLite, seeded with the scored synthetic queue on start-up. On R
 python -m venv .venv
 .venv\Scripts\activate        (Windows)   or   source .venv/bin/activate
 pip install -r requirements-dev.txt
-pytest                                          # 50 tests
+pytest                                          # 66 tests
 uvicorn metro_deal_desk.api:app --reload        # then open http://127.0.0.1:8000/docs
 ```
 

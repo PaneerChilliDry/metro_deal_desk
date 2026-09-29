@@ -70,3 +70,17 @@ def test_reference_endpoints(api_client):
     assert len(api_client.get("/policy").json()) >= 6
     assert "test_auc" in api_client.get("/model").json()
     assert "Ute / van" in api_client.get("/reference/options").json()["asset_category"]
+
+
+def test_stress_endpoint(api_client):
+    r = api_client.get("/stress", params={"scenario": "gfc"}).json()
+    assert r["stressed"]["expected_loss"] > r["baseline"]["expected_loss"]
+    assert r["loans"] > 0 and r["by_industry"]
+    assert len(api_client.get("/stress/scenarios").json()) == 5
+    assert api_client.get("/stress", params={"multiplier": 2}).json()["scenario"] == "custom"
+
+
+def test_drift_endpoint(api_client):
+    assert api_client.get("/monitoring/drift").json()["overall_status"] == "Stable"
+    sim = api_client.get("/monitoring/drift", params={"simulate": "construction_boom"}).json()
+    assert sim["simulated"] == "construction_boom" and sim["overall_status"] != "Stable"

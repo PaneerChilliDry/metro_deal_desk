@@ -165,3 +165,11 @@ def _named_queries() -> dict[str, str]:
 def portfolio_summary(path: Path | None = None) -> dict:
     with connect(path) as con:
         return {name: [dict(r) for r in con.execute(sql).fetchall()] for name, sql in _named_queries().items()}
+
+
+def book(decisions: tuple[str, ...] = ("Approve",), path: Path | None = None) -> pd.DataFrame:
+    """Scored applications for stress testing and monitoring."""
+    sql = (f"SELECT application_id, submitted_date, industry, asset_category, loan_amount, term_months, pd, decision "
+           f"FROM applications WHERE decision IN ({', '.join('?' * len(decisions))})")
+    with connect(path) as con:
+        return pd.read_sql_query(sql, con, params=list(decisions))
